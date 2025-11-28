@@ -1,4 +1,4 @@
-
+// lib/services/tournament_service.dart
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'api_config.dart';
@@ -7,7 +7,7 @@ import 'auth_service.dart';
 class TournamentService {
   final AuthService _authService = AuthService();
 
-
+  // 1. OBTENER TODOS LOS TORNEOS
   Future<List<dynamic>> getTournaments() async {
     final response = await http.get(
       Uri.parse('$apiUrl/api/Tournaments'),
@@ -20,7 +20,7 @@ class TournamentService {
     }
   }
 
-
+  // 2. CREAR TORNEO (Con Premios, Reglas y Kick)
   Future<bool> createTournament(
       String name, 
       String game, 
@@ -53,7 +53,7 @@ class TournamentService {
     return response.statusCode == 201;
   }
 
-
+  // 3. OBTENER SALÓN DE LA FAMA (CAMPEONES) - ¡NUEVO!
   Future<List<dynamic>> getHallOfFame() async {
     final response = await http.get(
       Uri.parse('$apiUrl/api/Tournaments/hall-of-fame'),
